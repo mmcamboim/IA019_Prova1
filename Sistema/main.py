@@ -19,8 +19,8 @@ xk = np.array([np.pi/18,0]).reshape(2,1)
 yk = np.zeros(2).reshape(2,1)
 
 # Noises =====================================================================
-W_STD = 2.0
-V_STD = 2.0
+W_STD = 10.0
+V_STD = 10.0
 
 # Storage Variables ==========================================================
 ITER = 500
@@ -63,3 +63,6 @@ plt.tight_layout()
 # Saving Generated Data ======================================================
 with open(r'C:\Users\mcamboim\Documents\UNICAMP\IA019 - Realização e Predição de Séries Temporais Multivariáveis no Espaço de\Provas\Prova 1\Github\Kalman Filter\system.pickle','wb') as file:
     pickle.dump([Ak,Bk,Ck,xk_t,yk_t,W_STD,V_STD,ITER],file)
+    
+with open(r'C:\Users\mcamboim\Documents\UNICAMP\IA019 - Realização e Predição de Séries Temporais Multivariáveis no Espaço de\Provas\Prova 1\Github\Kalman Filter Refinement\system.pickle','wb') as file:
+    pickle.dump([Ak,Bk,Ck,xk_t,yk_t,W_STD,V_STD,ITER],file)    
