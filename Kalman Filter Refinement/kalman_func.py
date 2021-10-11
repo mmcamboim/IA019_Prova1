@@ -48,7 +48,7 @@ class KalmanFilter:
 
         self.yk[:,:,self.iter + 1] = self.Ck @ self.xk[:,:,self.iter]
         self.ek[:,:,self.iter + 1] = y_meas - self.yk[:,:,self.iter + 1]
-
+        
         vt = self.Kk[:,:,self.iter + 1] @ self.ek[:,:,self.iter + 1]
         self.xk[:,:,self.iter + 1] = self.Ak @ self.xk[:,:,self.iter]  +  vt
 
