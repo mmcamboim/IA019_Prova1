@@ -11,9 +11,7 @@ import matplotlib.pyplot as plt
 
 from kalman_func import KalmanFilter
 
-"""
-Entender melhor quem é quem no passo a frente, fazer devagar okay
-"""
+plt.close('all')
 
 # Loading System Data ========================================================
 with open('system.pickle','rb') as file:
