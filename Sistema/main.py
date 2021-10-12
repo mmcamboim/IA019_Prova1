@@ -19,8 +19,8 @@ xk = np.array([np.pi/18,0]).reshape(2,1)
 yk = np.zeros(2).reshape(2,1)
 
 # Noises =====================================================================
-W_STD = 10.0
-V_STD = 10.0
+W_STD = 1.0
+V_STD = 0.1
 
 # Storage Variables ==========================================================
 ITER = 500
@@ -39,6 +39,11 @@ for i in range(ITER):
     yk_t[i,:] = yk.reshape(-1)
 
 # Plot =======================================================================
+plt.rcParams['axes.linewidth'] = 2.0
+font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 14}
+plt.rc('font', **font)
 
 plt.figure(figsize=(8,8),dpi=180)
 plt.subplot(2,1,1)
@@ -47,6 +52,7 @@ plt.plot(xk_t[:,1],c='r',lw=2)
 plt.legend(['$xk_1$','$xk_2$'])
 plt.xlim([0,ITER])
 plt.grid(True,ls='dotted')
+plt.xlabel('(a)\n')
 plt.ylabel('xk []')
 
 plt.subplot(2,1,2)
@@ -55,7 +61,7 @@ plt.plot(yk_t[:,1],c='r',lw=2)
 plt.legend(['$yk_1$','$yk_2$'])
 plt.xlim([0,ITER])
 plt.grid(True,ls='dotted')
-plt.xlabel('Iteração [N]')
+plt.xlabel('(b)\n Iteração [N]\n')
 plt.ylabel('yk []')
 
 plt.tight_layout()

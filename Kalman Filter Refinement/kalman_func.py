@@ -40,6 +40,7 @@ class KalmanFilter:
         self.Nk = np.zeros((Ak.shape[0],Ak.shape[1],ITER))
         self.xk_N = np.zeros((Ak.shape[0],1,ITER + 1))
         self.Pk_N = np.zeros((Ak.shape[0],Ak.shape[1],ITER + 1))
+        self.yk_N = np.zeros((Ak.shape[0],1,ITER + 1))
 
     def RunKfOneStepAhead(self,y_meas):
         self.Mk[:,:,self.iter] = self.Ak @ self.Pk[:,:,self.iter] @ self.Ck.T
@@ -63,6 +64,7 @@ class KalmanFilter:
         self.Nk[:,:,self.iter - 1] = self.Ck.T @ np.linalg.inv(self.Fk[:,:,self.iter]) @ self.Ck + self.Lk[:,:,self.iter].T @ self.Nk[:,:,self.iter] @ self.Lk[:,:,self.iter]
         self.xk_N[:,:,self.iter] = self.xk[:,:,self.iter] + self.Pk[:,:,self.iter] @ self.rk[:,:,self.iter - 1]
         self.Pk_N[:,:,self.iter] = self.Pk[:,:,self.iter] - self.Pk[:,:,self.iter] @ self.Nk[:,:,self.iter - 1] @ self.Pk[:,:,self.iter]
+        self.yk_N[:,:,self.iter] = self.Ck @ self.xk_N[:,:,self.iter]
         
         self.iter -= 1
         # A

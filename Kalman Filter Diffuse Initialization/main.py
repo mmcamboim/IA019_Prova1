@@ -28,6 +28,13 @@ for i in range(ITER):
 
     
 # Plotting ===================================================================
+plt.rcParams['axes.linewidth'] = 2.0
+font = {'family' : 'normal',
+        'weight' : 'normal',
+        'size'   : 14}
+plt.rc('font', **font)
+
+# States ---------------------------------------------------------------------
 plt.figure(figsize=(8,8),dpi=180)
 plt.subplot(2,1,1)
 plt.plot(range(0,500),xk_t[:,0],c='b',lw=2)
@@ -35,7 +42,8 @@ plt.plot(range(0,501),kf.xk[0,0,:],c='r',lw=2)
 plt.legend(['$xk_{1real}$','$xk_{1est}$'])
 plt.xlim([0,ITER])
 plt.grid(True,ls='dotted')
-plt.ylabel('xk_1 []')
+plt.xlabel('(a)\n')
+plt.ylabel('$xk_1$ []')
 
 plt.subplot(2,1,2)
 plt.plot(range(0,500),xk_t[:,1],c='b',lw=2)
@@ -43,10 +51,25 @@ plt.plot(range(0,501),kf.xk[1,0,:],c='r',lw=2)
 plt.legend(['$xk_{2real}$','$xk_{2est}$'])
 plt.xlim([0,ITER])
 plt.grid(True,ls='dotted')
-plt.xlabel('Iteração [N]')
-plt.ylabel('xk_2 []')
+plt.xlabel('(b)\n Iteração [N]\n')
+plt.ylabel('$xk_2$ []')
+
+plt.tight_layout()
 
 
-plt.figure()
-plt.plot(kf.Pk[1,1,:])
+# Covariância ------------------------------------------------
+plt.figure(figsize=(8,8),dpi=180)
+plt.subplot(2,1,1)
+plt.plot(kf.Pk[0,0,:],c='b',lw=2)
+plt.grid(True,ls='dotted')
+plt.ylabel("$P_{0,0}(k|k-1)$ []")
+plt.xlabel('(a)\n')
+
+plt.subplot(2,1,2)
+plt.plot(kf.Pk[1,1,:],c='b',lw=2)
+plt.grid(True,ls='dotted')
+plt.ylabel("$P_{1,1}(k|k-1)$ []")
+plt.xlabel('(b)\n Iteração [N]\n')
+
+plt.tight_layout()
 
